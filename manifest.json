@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Transcript - DRP",
+  "version": "1.0.0",
+  "description": "Give it a YouTube URL and read the full transcript in the side panel, with timestamps you can click to jump the video.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "optional_host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "YouTube Transcript - DRP"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["seek.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

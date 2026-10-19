@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YouTube Transcript settings</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { padding: 20px 22px; max-width: 620px; }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 18px; font-size: 12px; }
+  .row { margin-bottom: 16px; }
+  .row label { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+  .row input[type="text"] { width: 100%; }
+  .row .hint { color: var(--muted); font-size: 11px; margin-top: 4px; }
+  .actions { display: flex; gap: 8px; align-items: center; margin-top: 18px; }
+  #saved { color: var(--ok); font-size: 12px; }
+  .status { margin-top: 14px; font-size: 12px; }
+  .status.ok { color: var(--ok); }
+  .status.bad { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<h1>YouTube Transcript</h1>
+<p class="lead">Where the transcript API runs, and what to ask it for by default.</p>
+
+<div class="row">
+  <label for="api">Transcript API address</label>
+  <input id="api" type="text" spellcheck="false" placeholder="http://127.0.0.1:8000">
+  <div class="hint">
+    The FastAPI app from the <code>get-youtube-transcript-by-url</code> project.
+    Start it with <code>uvicorn app.main:app</code>. The extension only ships with
+    permission for localhost, so a host elsewhere would need that origin granted.
+  </div>
+</div>
+
+<div class="row">
+  <label for="languages">Preferred languages</label>
+  <input id="languages" type="text" spellcheck="false" placeholder="ne,en">
+  <div class="hint">
+    Comma-separated codes, most wanted first. A video's transcript list is read
+    first and the best match is picked; if none matches, the first one the video
+    actually has is used rather than failing.
+  </div>
+</div>
+
+<div class="row">
+  <label for="historyLimit">Recent history</label>
+  <input id="historyLimit" type="text" inputmode="numeric" value="10">
+  <div class="hint">How many fetched transcripts to keep in this browser, newest first (max 50).</div>
+</div>
+
+<div class="row">
+  <label for="contextLines">Context lines in Focus mode</label>
+  <input id="contextLines" type="text" inputmode="numeric" value="2">
+  <div class="hint">
+    How many transcript lines to show above and below the selected range (0–5).
+    Focus mode always shows this many on each side.
+  </div>
+</div>
+
+<div class="actions">
+  <button id="save" class="primary">Save</button>
+  <button id="test" class="ghost">Test connection</button>
+  <span id="saved"></span>
+</div>
+
+<div id="status" class="status"></div>
+
+<script src="lib.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

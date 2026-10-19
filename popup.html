@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YouTube Transcript</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body { width: 300px; }
+  .popup-actions { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; }
+  .popup-actions button { width: 100%; }
+  .note { padding: 0 12px 12px; color: var(--muted); font-size: 11px; }
+  .page { padding: 10px 12px 0; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    <span class="wordmark">ytt</span>
+    <span class="brand-sub">YouTube Transcript &middot; DRP</span>
+  </div>
+</header>
+
+<div id="page" class="page">Reading this tab…</div>
+
+<div class="popup-actions">
+  <button id="open-panel" class="primary" disabled>Open the side panel</button>
+  <button id="open-options" class="ghost">Settings</button>
+</div>
+
+<p class="note" id="status"></p>
+
+<script src="lib.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

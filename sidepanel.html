@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YouTube Transcript</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    <span class="wordmark">ytt</span>
+    <span class="brand-sub">YouTube Transcript &middot; DRP</span>
+  </div>
+  <button id="open-options" class="icon" title="Settings" aria-label="Settings">&#9881;</button>
+</header>
+
+<div id="backend" class="backend" hidden></div>
+
+<section class="source">
+  <div class="source-row">
+    <input id="url" type="text" spellcheck="false" placeholder="Paste a YouTube URL or id">
+    <button id="current-page" class="ghost" title="Read the page in this tab">This page</button>
+    <button id="fetch" class="primary">Fetch</button>
+  </div>
+  <div id="tab-hint" class="tab-hint" hidden></div>
+  <div id="lang-row" class="lang-row" hidden>
+    <label for="language">Transcript</label>
+    <select id="language"></select>
+  </div>
+</section>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-tab="transcript" role="tab">Transcript</button>
+  <button class="tab" data-tab="recent" role="tab">
+    Recent <span id="count-recent" class="pill" hidden>0</span>
+  </button>
+</nav>
+
+<div id="pane-transcript" class="pane active">
+  <div id="view-bar" class="view-bar" hidden>
+    <div class="view-toggles">
+      <div class="mode" role="group" aria-label="View mode">
+        <button id="mode-full" class="mode-btn active" data-mode="full">Full</button>
+        <button id="mode-focus" class="mode-btn" data-mode="focus">Focus</button>
+      </div>
+      <div class="mode" role="group" aria-label="Output format">
+        <button id="fmt-lines" class="mode-btn active" data-fmt="lines">Lines</button>
+        <button id="fmt-para" class="mode-btn" data-fmt="para">Paragraph</button>
+      </div>
+    </div>
+    <span id="view-info" class="muted"></span>
+  </div>
+
+  <div id="focus-controls" class="focus-controls" hidden>
+    <div class="focus-row">
+      <label for="focus-start">Start</label>
+      <input id="focus-start" type="text" inputmode="numeric" spellcheck="false" placeholder="0:00">
+      <label for="focus-end">End</label>
+      <input id="focus-end" type="text" inputmode="numeric" spellcheck="false" placeholder="0:00">
+    </div>
+    <div class="focus-actions">
+      <span id="focus-info" class="muted"></span>
+      <button id="focus-play" class="ghost small">Play from start</button>
+      <button id="focus-copy" class="ghost small">Copy range</button>
+      <button id="focus-compare" class="ghost small">Compare…</button>
+      <button id="focus-reset" class="ghost small">Reset</button>
+    </div>
+    <label class="slider-toggle">
+      <input type="checkbox" id="focus-slider-toggle"> <span>Show slider</span>
+    </label>
+    <div id="focus-slider" class="dual" hidden>
+      <div class="dual-track"><div id="focus-highlight" class="dual-highlight"></div></div>
+      <input id="focus-lo" type="range" min="0" max="100" step="1" value="0" aria-label="Range start">
+      <input id="focus-hi" type="range" min="0" max="100" step="1" value="100" aria-label="Range end">
+    </div>
+  </div>
+
+  <div id="compare-box" class="compare-box" hidden>
+    <div class="compare-head">
+      <span class="compare-title">Compare with your text</span>
+      <button id="compare-clear" class="ghost small">Clear</button>
+    </div>
+    <div id="compare-result" class="compare-result"></div>
+    <textarea id="compare-input" class="compare-input" rows="4" spellcheck="false"
+      placeholder="Paste your text here, then press Compare"></textarea>
+    <div class="compare-actions">
+      <button id="compare-run" class="primary small">Compare</button>
+      <span id="compare-info" class="muted"></span>
+    </div>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<div id="pane-recent" class="pane">
+  <div class="grid-head">
+    <span class="muted">Kept in this browser. Open one without asking YouTube again.</span>
+    <button id="clear-history" class="ghost">Clear</button>
+  </div>
+  <div id="history" class="history"></div>
+</div>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<script src="lib.js"></script>
+<script src="sidepanel.js"></script>
+</body>
+</html>
