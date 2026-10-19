@@ -32,13 +32,13 @@ address you configure.
 ### 1. Run the transcript API
 
 This extension is only the interface. Transcripts come from the companion FastAPI
-app in [`python_proj/get-youtube-transcript-by-url`](https://github.com/DarpanAdhikari):
+app in [`youtube-caption`](https://github.com/DarpanAdhikari/youtube-caption):
 
 ```bash
 uvicorn app.main:app
 ```
 
-It listens on `http://127.0.0.1:8000` by default. See that project's README for
+It listens on `http://127.0.0.1:8000` by default. See that repo's README for
 setup, proxies and troubleshooting.
 
 ### 2. Load the extension
@@ -130,8 +130,9 @@ a different address in Settings, the browser will ask you to allow access to tha
 and accept the prompt.
 
 **`youtube_blocked` from the API.**
-YouTube is refusing the server's IP. Route the app through a proxy (see the API
-project's README). Cloud hosts are blocked most.
+YouTube is refusing the server's IP. Route the app through a proxy (see the
+[`youtube-caption`](https://github.com/DarpanAdhikari/youtube-caption) README). Cloud
+hosts are blocked most.
 
 **`no_transcript_found`.**
 The video has no captions in the languages you asked for. Open
